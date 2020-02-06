@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   Recipe.init({
     instruction: DataTypes.STRING,
     UserId: DataTypes.INTEGER
+  }, {
+    sequelize
   })
 
   return Recipe;
