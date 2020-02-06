@@ -12,8 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Recipe.init({
-    instruction: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    instruction: {
+      type: DataTypes.STRING
+    },
+    UserId: {
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize
   })
