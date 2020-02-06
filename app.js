@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors')
 const userRoutes = require("./routes/user")
+const errorHandler = require("./middlewares/errorHandler")
 const port = process.env.PORT;
 app.use(express.urlencoded({
     extended: false
@@ -19,6 +20,8 @@ app.get("/", (req, res) => {
 });
 
 app.use(userRoutes)
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log("listening to ", port);
