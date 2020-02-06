@@ -11,11 +11,7 @@ class ApiController {
                     data
                 })
             })
-            .catch(err => {
-                res.status(404).json({
-                    msg: err.message
-                })
-            })
+            .catch(next)
     }
 
     static category (req, res, next) {
@@ -29,11 +25,7 @@ class ApiController {
                     data
                 })
             })
-            .catch(err => {
-                res.status(404).json({
-                    msg: err.message
-                })
-            })
+            .catch(next)
     }
 
     static restaurant (req, res, next) {
@@ -50,11 +42,7 @@ class ApiController {
                     data
                 })
             })
-            .catch(err => {
-                res.status(404).json({
-                    msg: err.message
-                })
-            })
+            .catch(next)
     }
 }
 
