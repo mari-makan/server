@@ -24,8 +24,27 @@ class RecipeController {
             .then(recipe => {
                 res.status(200).json({
                     data: recipe,
-                    msg: 'create success'
+                    msg: 'find success'
                 })
+            })
+            .catch(next)
+    }
+
+    static delete(req, res, next) {
+        Recipe.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            then(recipe => {
+                if (recipe === 0) {
+                    next({
+                        status: 400,
+                        msg: 'data not found'
+                    })
+                } else {
+                    res.status(200).json()
+                }
             })
             .catch(next)
     }
