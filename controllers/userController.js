@@ -1,7 +1,7 @@
 const { User } = require("../models/");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("../helpers/bcrypt");
-const privateKey = process.env.PRIVATE_KEY;
+const privateKey = process.env.PRIVATEKEY;
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
@@ -17,6 +17,7 @@ class UserController {
       .then(data => {
         if (data) {
           let passwordCheck = bcrypt.check(password, data.password);
+          console.log(passwordCheck)
           if (passwordCheck) {
             let token = jwt.sign(
               {
