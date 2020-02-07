@@ -12,12 +12,22 @@ class RecipeController {
                     msg: 'create success'
                 })
             })
-            .catch(() => {
-                next({
-                    status: 400,
-                    msg: 'errors'
+            .catch(next)
+    }
+
+    static findRecipe(req, res, next) {
+        Recipe.findOne({
+            where: {
+                UserId: req.UserId
+            }
+        })
+            .then(recipe => {
+                res.status(200).json({
+                    data: recipe,
+                    msg: 'create success'
                 })
             })
+            .catch(next)
     }
 }
 
