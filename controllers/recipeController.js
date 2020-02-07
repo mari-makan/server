@@ -2,7 +2,7 @@ const { Recipe } = require('../models')
 
 class RecipeController {
     static create(req, res, next) {
-        Recipe.crete({
+        Recipe.create({
             instruction: req.body.instruction,
             UserId: req.UserId
         })
@@ -12,7 +12,12 @@ class RecipeController {
                     msg: 'create success'
                 })
             })
-            .catch(next)
+            .catch(err => {
+                console.log(err)
+                res.status(404).json({
+                    msg: err
+                })
+            })
     }
 
     static findRecipe(req, res, next) {

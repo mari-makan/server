@@ -1,8 +1,11 @@
 const router = require("express").Router()
 const recipeController = require("../controllers/recipeController")
+const { authentication } = require('../middlewares/jwt')
+const { authorize } = require('../middlewares/authorize')
 
-router.post('/recipes', recipeController.create)
-router.get('/recipes', recipeController.findRecipe)
-router.delete('/recipes/:id', recipeController.delete)
+router.use(authentication)
+router.post('/', recipeController.create)
+router.get('/', recipeController.findRecipe)
+router.delete('/:id', authorize, recipeController.delete)
 
 module.exports = router
