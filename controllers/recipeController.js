@@ -29,8 +29,6 @@ class RecipeController {
             })
             .catch(next)
     }
-
-    
 }
 
 module.exports = RecipeController
