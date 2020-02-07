@@ -1,11 +1,13 @@
-const { Recipe } = require('../models')
+const {
+    Recipe
+} = require('../models')
 
 class RecipeController {
     static create(req, res, next) {
         Recipe.create({
-            instruction: req.body.instruction,
-            UserId: req.UserId
-        })
+                instruction: req.body.instruction,
+                UserId: req.UserId
+            })
             .then(recipe => {
                 res.status(201).json({
                     data: recipe,
@@ -22,10 +24,10 @@ class RecipeController {
 
     static findRecipe(req, res, next) {
         Recipe.findOne({
-            where: {
-                UserId: req.UserId
-            }
-        })
+                where: {
+                    UserId: req.UserId
+                }
+            })
             .then(recipe => {
                 res.status(200).json({
                     data: recipe,
@@ -41,7 +43,7 @@ class RecipeController {
                 id: req.params.id
             }
         })
-            then(recipe => {
+        then(recipe => {
                 if (recipe === 0) {
                     next({
                         status: 400,

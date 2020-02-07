@@ -122,3 +122,256 @@ Login user with google OAuth.
     err: "WRONG LOGIN DATA",
     msg: "USERNAME OR PASSWORD IS WRONG"
     ```
+
+## ** List Menu**
+
+Display list of category menu after login.
+
+- **URL**
+
+  /list-menu
+
+- **Method:**
+
+  `GET`
+
+- **URL Params**
+  **Required:**
+  None
+
+- **Data Params**
+  none
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```javascript
+    "meals": [
+        {
+            "strCategory": "Beef"
+        },
+        {
+            "strCategory": "Breakfast"
+        },
+        {
+            "strCategory": "Chicken"
+        }
+    ]
+    ```
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
+
+## ** List Category Menu**
+
+Display list's category from user's choice.
+
+- **URL**
+
+  /menu/:category
+
+- **Method:**
+
+  `GET`
+
+- **URL Params**
+  **Required:**
+  category=[string]
+
+- **Data Params**
+  none
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```javascript
+    "meals": [
+        {
+            ........
+        },
+        {
+            ...........
+        },
+        {
+            ............
+        }
+    ]
+    ```
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
+
+## ** Restaurant list by menu**
+
+Display restaurant list by menu.
+
+- **URL**
+
+  /restaurant/:menu
+
+- **Method:**
+
+  `GET`
+
+- **URL Params**
+  **Required:**
+  menu=[string]
+
+- **Data Params**
+  none
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```javascript
+    "Restaurants": [
+        {
+            ........
+        },
+        {
+            ...........
+        },
+        {
+            ............
+        }
+    ]
+    ```
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
+
+## ** Create new recipe**
+
+Insert new recipe into database.
+
+- **URL**
+
+  /recipes/
+
+- **Method:**
+
+  `POST`
+
+- **URL Params**
+  **Required:**
+  none
+
+- **Data Params**
+  instruction,
+  UserId
+
+- **Success Response:**
+
+  - **Code:** 201 <br />
+    **Content:**
+    ```javascript
+    data: ".....",
+    msg: "create success"
+    ```
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
+
+## ** Find user's recipe**
+
+Search user's recipe.
+
+- **URL**
+
+  /recipes/
+
+- **Method:**
+
+  `GET`
+
+- **URL Params**
+  **Required:**
+  none
+
+- **Data Params**
+  none
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```javascript
+    data: ".....",
+    msg: "find success"
+    ```
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
+
+## ** Delete user's recipe**
+
+Delete user's recipe by id.
+
+- **URL**
+
+  /recipes/:id
+
+- **Method:**
+
+  `DELETE`
+
+- **URL Params**
+  **Required:**
+  id=[integer]
+
+- **Data Params**
+  none
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    none
+
+* **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+
+    ```javascript
+    err: "NOT FOUND",
+    msg: "DATA NOT FOUND"
+    ```
