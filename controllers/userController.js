@@ -3,7 +3,11 @@ const {
 } = require("../models/")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("../helpers/bcrypt")
-const privateKey = "secret"
+const privateKey = process.env.PRIVATE_KEY
+const {
+    OAuth2Client
+} = require('google-auth-library');
+const client = new OAuth2Client(process.env.CLIENT_ID);
 
 class UserController {
     static login(req, res, next) {
@@ -56,6 +60,43 @@ class UserController {
                 res.status(201).json({
                     data,
                     msg: "Account registered successfully"
+                })
+            })
+            .catch(err => {
+                next(err)
+            })
+    }
+
+    static googleLogin(req, res, next) {
+        let payload = ''
+        client.verifyIdToken({
+                idToken: req.headers.id_token,
+                audience: process.env.CLIENT_ID
+            })
+            .then(result => {
+                payload = result.payload
+                return User.findOne({
+                    where: {
+                        email: payload.email
+                    }
+                })
+            })
+            .then(data => {
+                if (!data) {
+                    return User.create({
+                        email: payload.email,
+                        password: process.env.GOOGLE_PASSWORD
+                    })
+                } else return data
+            })
+            .then(data => {
+                let payload = {
+                    id: data.id,
+                    email: data.email
+                }
+                let token = jwt.sign(payload, privateKey)
+                res.status(200).json({
+                    token
                 })
             })
             .catch(err => {
