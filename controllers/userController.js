@@ -4,34 +4,6 @@ const {
 const jwt = require("jsonwebtoken");
 const bcrypt = require("../helpers/bcrypt");
 const privateKey = process.env.PRIVATEKEY;
-<<<<<<< HEAD
-const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client(process.env.CLIENT_ID);
-
-class UserController {
-  static login(req, res, next) {
-    const email = req.body.email;
-    const password = req.body.password;
-    User.findOne({
-      where: {
-        email: email
-      }
-    })
-      .then(data => {
-        if (data) {
-          let passwordCheck = bcrypt.check(password, data.password);
-          console.log(passwordCheck)
-          if (passwordCheck) {
-            let token = jwt.sign(
-              {
-                data
-              },
-              privateKey
-            );
-            res.status(200).json({
-              email: data.email,
-              token
-=======
 const {
     OAuth2Client
 } = require("google-auth-library");
@@ -74,7 +46,6 @@ class UserController {
                     msg: "USERNAME OR PASSWORD IS WRONG"
                 };
                 next(error);
->>>>>>> 5db809197c784e41d40c5ae7bf36ea2cb20e1050
             });
     }
 
