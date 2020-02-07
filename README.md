@@ -1,4 +1,4 @@
-# rest-api-todo
+# MARI-MAKAN
 
 ## **Register new user account**
 
